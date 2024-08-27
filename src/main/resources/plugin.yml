@@ -1,0 +1,33 @@
+name: AaDCF
+version: '1.1.4'
+main: org.tnjs.AaDCF.Main
+api-version: '1.21'
+load: STARTUP
+authors: [ TNJS, RealmLabs ]
+
+
+commands:
+  test:
+    description: A basic testing command that returns a message
+    usage: /test
+
+  pingperm:
+    description: Sends a message all online users with a given role
+    usage: /pingperm <permission> <message>
+
+permissions:
+  aadcf.commands.test:
+    description: Allows the use of the testing command
+    default: false
+
+  aadcf.admin:
+    description: Admin permissions
+    default: false
+
+  aadcf.gay:
+    description: gay?
+    default: false
+
+  aadcf.notify:
+    description: Notify blocked words
+    default: false
