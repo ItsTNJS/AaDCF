@@ -1,1 +1,10 @@
-message: 'sup nerd'
+message: 'Sorry, you cant say that'
+
+# Put words here, if you couldn't tell
+
+words:
+  - "fuck"
+  - "shit"
+  - "damn"
+  - "whore"
+  - "asian"

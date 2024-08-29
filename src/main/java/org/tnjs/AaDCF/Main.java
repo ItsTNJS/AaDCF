@@ -25,8 +25,7 @@ public final class Main extends JavaPlugin {
 
         registerCommand("test", new MyCommandExecutor());
 
-        registerListener(new JoinQuitListener());
-        getServer().getPluginManager().registerEvents(new ChatListener(), this);
+        getServer().getPluginManager().registerEvents(new ChatListener(this), this);
 
         pingPerm ping = new pingPerm();
 
