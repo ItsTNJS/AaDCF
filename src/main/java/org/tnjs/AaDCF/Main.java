@@ -1,60 +1,59 @@
 package org.tnjs.AaDCF;
+
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.tnjs.commands.MyCommandExecutor;
+import org.tnjs.commands.AaDCFCMD;
 import org.tnjs.commands.PingPermCMD;
+import org.tnjs.commands.tab.AaDCFCMDTab;
 import org.tnjs.commands.tab.PingPermTab;
 import org.tnjs.functions.pingPerm;
-import org.tnjs.listener.JoinQuitListener;
 import org.tnjs.listener.ChatListener;
 
 public final class Main extends JavaPlugin {
-    static Main instance;
-    FileConfiguration config = getConfig();
-
-    public Main() {
-      instance = this;
-    }
+    private static Main instance;
+    private ChatListener chatListener;
 
     @Override
     public void onEnable() {
+        instance = this;
+
+        // Load and save the default configuration
+        FileConfiguration config = getConfig();
         config.options().copyDefaults(true);
         saveConfig();
 
-        registerCommand("test", new MyCommandExecutor());
+        // Initialize and register listeners
+        chatListener = new ChatListener(this);
+        getServer().getPluginManager().registerEvents(chatListener, this);
 
-        getServer().getPluginManager().registerEvents(new ChatListener(this), this);
+        // Register commands
+        getCommand("aadcf").setExecutor(new AaDCFCMD(this));
+        getCommand("aadcf").setTabCompleter(new AaDCFCMDTab());
 
-        pingPerm ping = new pingPerm();
-
-        registerCommand("pingperm", new PingPermCMD());
-
-        // Register the tab completer
+        getCommand("pingperm").setExecutor(new PingPermCMD());
         getCommand("pingperm").setTabCompleter(new PingPermTab());
     }
-
 
     @Override
     public void onDisable() {
         getLogger().info("Goodbye!");
     }
 
-    // what i like to do (you dont have to)
+    public void reloadPluginConfig() {
+        reloadConfig();
+        getConfig(); // Update the local config reference
 
-    public void registerCommand(String command, CommandExecutor executor) {
-        getInstance().getCommand(command).setExecutor(executor);
-    }
+        // Reload the ChatListener configuration
+        if (chatListener != null) {
+            chatListener.reloadConfig();
+        }
 
-    public void registerListener(Listener listener) {
-        getInstance().getServer().getPluginManager().registerEvents(listener, getInstance());
+        getLogger().info("Configuration reloaded!");
     }
 
     public static Main getInstance() {
         return instance;
     }
 }
-
-
-

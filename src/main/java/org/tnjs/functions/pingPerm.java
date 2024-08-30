@@ -11,7 +11,7 @@ public class pingPerm {
                 player.sendMessage(message);
                 int volume = 10;
                 int pitch = 1;
-                player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, volume, pitch);
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BANJO, volume, pitch);
             }
         });
     }

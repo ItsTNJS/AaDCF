@@ -1,10 +1,15 @@
+# PLEASE DO NOT CHANGE THIS!!!!!!
+# This is used to make sure you are using the most up to date config version.
+config-version: 1
+
+# The message sent when a player is filtered
 message: 'Sorry, you cant say that'
 
-# Put words here, if you couldn't tell
+# Words to be censored
+# Put in as lowercase, as messages are translated to lowercase
+# before being checked. :P
 
 words:
   - "fuck"
   - "shit"
   - "damn"
-  - "whore"
-  - "asian"
