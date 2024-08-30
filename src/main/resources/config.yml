@@ -3,7 +3,7 @@
 config-version: 1
 
 # The message sent when a player is filtered
-message: 'Sorry, you cant say that'
+message: 'The message you sent had blocked words written'
 
 # Words to be censored
 # Put in as lowercase, as messages are translated to lowercase
