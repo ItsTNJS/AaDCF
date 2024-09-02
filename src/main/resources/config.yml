@@ -1,32 +1,51 @@
-# PLEASE DO NOT CHANGE THIS!!!!!!
-# This is used to make sure you are using the most up to date config version.
 config-version: 2
-
-# The message sent when a player is filtered
-message: 'The message you sent had blocked words written'
-
-# Words to be censored
-# Put in as lowercase, as messages are translated to lowercase
-# before being checked. :P
-
+message: The message you sent had blocked words written
 words:
-  "word1":
+  word1:
     severity: 1
-  "word2":
+  word2:
     severity: 2
-  "word3":
+  word3:
     severity: 3
-  "word4":
+  word4:
     severity: 4
-  "word5":
+  word5:
     severity: 5
-
+  fuck:
+    severity: 1
+  shit:
+    severity: 1
 severity-actions:
-  severity-1: "msg $player 1 $term"
-  severity-2: "msg $player 2 $term"
-  severity-3: "msg $player 3 $term"
-  severity-4: "msg $player 4 $term"
-  severity-5: "kick $player Please refrain from saying '$term'"
-
+  severity-1: msg $player 1 $term
+  severity-2: msg $player 2 $term
+  severity-3: msg $player 3 $term
+  severity-4: msg $player 4 $term
+  severity-5: kick $player Please refrain from saying '$term'
 messages:
-  default: "Your message was not sent due to inappropriate content."
+  default: Your message was not sent due to inappropriate content.
+
+
+substitutions:
+  '1': 'i'
+  '4': 'a'
+  '8': 'b'
+  '3': 'e'
+  '0': 'o'
+  '5': 's'
+  '7': 't'
+  'v': 'u'
+  'l': 'i'
+  '9': 'g'
+  '2': 'z'
+  '(': 'c'
+  '|<': 'k'
+  '|-|': 'h'
+  '|*': 'p'
+  '|)': 'd'
+  '/': 'y'
+  'vv': 'w'
+  '%': 'x'
+  'ph': 'f'
+  '_|': 'j'
+  '!': 'i'
+  '+': 't'
