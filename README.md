@@ -15,8 +15,8 @@ AaDCF is a Minecraft plugin designed to address the common issue of ineffective 
 - **Fully Customizable Configuration**  
   Our configuration is designed for maximum flexibility. If there's something you'd like to adjust or add, just [open an issue](https://github.com/ItsTNJS/AaDCF/issues) and we'll consider it!
 
-- **Substitution Blocking**  
-  [Discover more about substitution blocking](https://github.com/ItsTNJS/AaDCF/wiki/Substitution-blocking) and how it can enhance your chat moderation.
+- **L33tGuard**  
+  [Discover more about L33tGuard](https://github.com/ItsTNJS/AaDCF/wiki/Substitution-blocking) and how it can enhance your chat moderation.
 
 - **Support for Latest Minecraft Versions**  
   AaDCF is built to stay compatible with the latest Minecraft updates, ensuring you're always up-to-date.
