@@ -71,12 +71,9 @@ public class ChatListener implements Listener {
             handleBlockedWord(event, originalMessage);
         } else {
             // If no direct matches, apply substitutions and check again
-            if (containsBannedWordAfterSubstitutions(originalMessage)) {
-                event.setCancelled(true);
-                event.getPlayer().sendMessage(Objects.requireNonNull(config.getString("messages.default", "Your message was not sent due to inappropriate content.")));
-                Bukkit.getConsoleSender().sendMessage(event.getPlayer().getName() + " was prevented from sending ' " + ChatColor.RED + event.getMessage() + ChatColor.WHITE + " '");
-                event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_VILLAGER_NO, 10, 1F);
-                pingPerm.sendMessageToPlayersWithPermission("aadcf.notify", "§c<" + event.getPlayer().getName() + "> " + event.getMessage());
+            String matchedVariation = containsBannedWordAfterSubstitutions(originalMessage);
+            if (matchedVariation != null) {  // If a substituted version contains a banned word
+                handleBlockedWord(event, matchedVariation);  // Pass the substituted version to handleBlockedWord
             }
         }
     }
@@ -90,8 +87,8 @@ public class ChatListener implements Listener {
         return false;
     }
 
-    private boolean containsBannedWordAfterSubstitutions(String message) {
-        // Generate all possible variations of the message with substitutions applied
+    // Now returns the substituted version that matched the banned word, or null if no match
+    private String containsBannedWordAfterSubstitutions(String message) {
         Set<String> variations = new HashSet<>();
         variations.add(message);
 
@@ -112,18 +109,18 @@ public class ChatListener implements Listener {
         // Check if any variation contains a banned word
         for (String variation : variations) {
             if (containsBannedWord(variation)) {
-                return true;
+                return variation;  // Return the matched variation
             }
         }
-        return false;
+        return null;  // No matches found
     }
 
-    private void handleBlockedWord(PlayerChatEvent event, String originalMessage) {
+    private void handleBlockedWord(PlayerChatEvent event, String messageWithBlockedWord) {
         for (Map.Entry<String, Integer> entry : wordSeverityMap.entrySet()) {
             String bannedWord = entry.getKey();
             int severity = entry.getValue();
 
-            if (originalMessage.contains(bannedWord)) {
+            if (messageWithBlockedWord.contains(bannedWord)) {
                 // Cancel the event to prevent the message from being sent
                 event.setCancelled(true);
 
@@ -150,7 +147,6 @@ public class ChatListener implements Listener {
             });
         }
 
-       // event.getPlayer().sendMessage(Objects.requireNonNull(config.getString("messages.default", "Your message was not sent due to inappropriate content.")));
         Bukkit.getConsoleSender().sendMessage(event.getPlayer().getName() + " was prevented from sending ' " + ChatColor.RED + event.getMessage() + ChatColor.WHITE + " '");
         event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_VILLAGER_NO, 10, 1F);
         pingPerm.sendMessageToPlayersWithPermission("aadcf.notify", "§c<" + event.getPlayer().getName() + "> " + event.getMessage().replace(term, "§m" + term + "§f§c"));
