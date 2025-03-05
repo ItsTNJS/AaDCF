@@ -1,6 +1,7 @@
 > # Get Involved: Testing & Feedback Wanted!
->  Are you a server owner or developer interested in testing AaDCF and providing feedback? We would love your help! Feel free to reach out to `@tnjs` on   Discord or contact us with any method you prefer.
+>  Are you a server owner or developer interested in testing AaDCF and providing feedback? We would love your help! Feel free to reach out in the discord!
 
+Join the support discord - https://dsc.gg/mosaic
 
 
 # AaDCF (Actually A Decent Chat Filter)
